@@ -4,10 +4,16 @@
     flex-direction: row;
     align-items: center;
     position: absolute;
-    left: clamp(0px, calc((100vw - 1184px) * 300 / 736), 300px);
+    left: clamp(15px, calc((100vw - 1184px) * 300 / 736), 300px);
     z-index: 100;
     padding-top: 40px;
     gap: 90px;
+
+    @media (width < 1440px) {
+        &__navigation, &__cta {
+            display: none;
+        }
+    }
 
     &__navigation {
         .menu {
@@ -28,7 +34,4 @@
             }
         }
     }
-
-    &__cta {}
-
 }
