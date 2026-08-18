@@ -70,6 +70,18 @@
         flex-direction: row;
         gap: 22px;
     }
+
+    &__scroll-down {
+        position: absolute;
+        left: 50%;
+        bottom: 55px;
+
+        a {
+            width: 19px;
+            height: 19px;
+            transform: rotate(90deg);
+        }
+    }
 }
 
 .test {
