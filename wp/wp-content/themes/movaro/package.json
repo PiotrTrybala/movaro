@@ -1,0 +1,38 @@
+{
+  "name": "movaro",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "webpack --config ./config/webpack.dev.js --watch",
+    "build": "webpack --config ./config/webpack.prod.js",
+    "watch": "webpack --config ./config/webpack.dev.js --watch",
+    "analyze": "webpack --config ./config/webpack.prod.js --analyze"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.25.2",
+    "@babel/preset-env": "^7.25.4",
+    "@fortawesome/fontawesome-free": "^6.6.0",
+    "babel-loader": "^9.2.1",
+    "copy-webpack-plugin": "^14.0.0",
+    "css-loader": "^7.1.2",
+    "css-minimizer-webpack-plugin": "^8.0.0",
+    "mini-css-extract-plugin": "^2.9.4",
+    "sass": "^1.77.8",
+    "sass-loader": "^16.0.5",
+    "terser-webpack-plugin": "^5.3.14",
+    "webpack": "^5.101.1",
+    "webpack-cli": "^5.1.4",
+    "webpack-merge": "^6.0.1"
+  },
+  "dependencies": {
+    "@fancyapps/ui": "^6.0.22",
+    "@popperjs/core": "^2.11.8",
+    "bootstrap": "^5.3.7",
+    "mmenu-js": "^9.3.0",
+    "npm-check-updates": "^18.0.2",
+    "swiper": "^14.1.0"
+  }
+}

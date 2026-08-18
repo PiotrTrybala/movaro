@@ -49,3 +49,6 @@
 
 /wp-db
 .env
+
+/wp/wp-content/themes/movaro/node_modules
+/wp/wp-content/themes/movaro/dist
