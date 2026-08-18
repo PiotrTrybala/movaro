@@ -1,0 +1,1 @@
+<h1>This is Movaro index template!</h1>
