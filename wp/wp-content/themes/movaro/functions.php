@@ -7,6 +7,12 @@ add_filter('wpcf7_autop_or_not', '__return_false');
 
 /* blocks */
 
+add_action('init', 'register_acf_blocks');
+
+function register_acf_blocks() {
+    register_block_type(__DIR__ . "/blocks/hero");
+}
+
 /* scripts & styles */
 
 add_action('wp_enqueue_scripts', 'enqueue_scripts');
