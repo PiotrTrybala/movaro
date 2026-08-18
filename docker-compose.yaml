@@ -1,0 +1,39 @@
+services:
+
+  movaro_wordpress:
+    image: wordpress
+    restart: always
+    depends_on:
+      - movaro_db
+    ports:
+      - 8080:80
+    environment:
+      WORDPRESS_DB_HOST: movaro_db
+      WORDPRESS_DB_USER: admin
+      WORDPRESS_DB_PASSWORD: admin
+      WORDPRESS_DB_NAME: introdb
+      WORDPRESS_DEBUG: true
+    volumes:
+      - ./wp:/var/www/html
+    networks:
+      - wpsite
+  movaro_db:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_DATABASE: introdb
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: admin
+      MYSQL_RANDOM_ROOT_PASSWORD: '1'
+    volumes:
+      - ./wp-db:/var/lib/mysql
+    networks:
+      - wpsite
+
+networks:
+  wpsite:
+    driver: bridge
+
+volumes:
+  movaro_db:
+  movaro_wordpress:
