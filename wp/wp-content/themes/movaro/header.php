@@ -11,5 +11,4 @@
 <body>
     <main class="app">
         <header>
-            Header
         </header>

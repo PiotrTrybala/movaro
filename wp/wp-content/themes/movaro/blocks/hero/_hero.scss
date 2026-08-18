@@ -1,5 +1,78 @@
-
 .b-hero {
+    background-color: var(--color-bg-hero);
     width: 100%;
-    background-color: gray;
+    height: 816px;
+    display: flex;
+    align-items: center;
+    border-radius: 0 0 50px 50px;
+    position: relative;
+
+    &__container {
+        margin-left: 300px;
+        width: 785px;
+    }
+
+    &__deco {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 556px;
+        height: 872px;
+        fill: rgba(255, 211, 56, 0.32);
+        filter: blur(100px);
+    }
+
+    &__image {
+        width: 870px;
+        height: 534px;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+    }
+
+    &__header {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+
+        &-pretitle {
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 300;
+            line-height: normal;
+            letter-spacing: -0.32px;
+        }
+
+        &-title {
+            margin-top: 12px;
+            font-size: 70px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 125%;
+            letter-spacing: -2.8px;
+        }
+
+        &-subtitle {
+            width: 532px;
+            margin-top: 15px;
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 300;
+            line-height: 125%;
+            /* 22.5px */
+            letter-spacing: -0.72px;
+        }
+    }
+
+    &__cta {
+        margin-top: 39px;
+        display: flex;
+        flex-direction: row;
+        gap: 22px;
+    }
+}
+
+.test {
+    height: 100vh;
+    width: 100%;
 }

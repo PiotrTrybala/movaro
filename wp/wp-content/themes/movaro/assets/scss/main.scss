@@ -1,0 +1,12 @@
+
+/* global styling */
+@use "footer";
+@use "header";
+@use "global";
+@use "fonts";
+
+/* blocks styling */
+@use "../../blocks/hero/hero";
+
+/* components styling */
+@use "./components/button";

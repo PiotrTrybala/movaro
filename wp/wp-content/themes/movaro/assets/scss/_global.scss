@@ -1,0 +1,30 @@
+:root {
+    --color-primary: #FFC107;
+    --color-primary-accent: #FFD338;
+    --color-secondary: #4F5481;
+    --color-secondary-accent: #A5A8BC;
+
+    --color-bg-hero: #FFFBEB;
+
+    --color-fg: #04071E;
+    --color-accent-fg-1: #000000;
+    --color-color-fg-2: #090C1F;
+    --color-accent-fg-3: #1D1D1B;
+
+    --color-bg: #FFFFFF;
+    --color-color-bg-1: #E9EDF1;
+    --color-color-bg-2: #DAE2EB;
+    --color-accent-bg-3: #E5EBF1;
+}
+
+body {
+    font-family: Outfit, sans-serif;
+    background-color: var(--color-bg);
+    color: var(--color-fg);
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
