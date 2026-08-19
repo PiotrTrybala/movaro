@@ -12,6 +12,7 @@ add_action('init', 'register_acf_blocks');
 function register_acf_blocks() {
     register_block_type(__DIR__ . "/blocks/hero");
     register_block_type(__DIR__ . "/blocks/about");
+    register_block_type(__DIR__ . "/blocks/benefits");
 }
 
 /* scripts & styles */

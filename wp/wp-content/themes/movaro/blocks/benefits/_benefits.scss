@@ -1,0 +1,130 @@
+.b-about {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    @media (width < 1200px) {
+        grid-template-rows: 450px 1fr;
+        grid-template-columns: 1fr;
+    }
+
+    @media (width < 768px) {
+        grid-template-rows: clamp(255px, 166.3636px + 23.6364vw, 450px) 1fr;
+    }
+
+    gap: 39px;
+
+    column-gap: 49px;
+    margin-top: 115px;
+    margin-bottom: 115px;
+
+    &__image {
+        width: 645px;
+        height: 620px;
+        border-radius: 8px;
+
+        @media (width < 1200px) {
+            width: 100%;
+            height: 450px;
+        }
+
+        @media (width < 768px) {
+            height: clamp(255px, 166.3636px + 23.6364vw, 450px);
+        }
+
+        img {
+            width: 100%;
+            height: 100%;
+            border-radius: inherit;
+            object-fit: cover;
+        }
+    }
+
+    &__content {
+        margin-top: 68px;
+        margin-bottom: 68px;
+
+        @media (width < 576px) {
+            width: 100%;
+            margin-top: 25px;
+        }
+
+        &-header {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            width: 100%;
+
+            h2 {
+                font-size: clamp(30px, 25.145px + 1.2945vw, 50px);
+                font-style: normal;
+                font-weight: 500;
+                line-height: 125%;
+                /* 62.5px */
+                letter-spacing: -2px;
+            }
+        }
+
+        &-list {
+            margin: 0;
+            padding-left: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+
+            li::marker {
+                color: var(--color-primary-accent);
+            }
+
+            li {
+                font-size: 18px;
+                font-style: normal;
+                font-weight: 300;
+                line-height: 125%;
+                /* 22.5px */
+                letter-spacing: -0.72px;
+            }
+        }
+
+        &-paragraph {
+            padding-right: 15px;
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 300;
+            line-height: 125%;
+            letter-spacing: -0.72px;
+            margin-top: 25px;
+            margin-bottom: 25px;
+        }
+
+        @media (width < 576px) {
+            &-cta-button {
+                padding-left: 0;
+                padding-right: 0;
+                width: 100%;
+            }
+        }
+
+        &-label {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 5px;
+            margin-top: 10px;
+
+            svg {
+                fill: var(--color-secondary);
+            }
+
+            span {
+                color: var(--color-secondary);
+                font-size: 18px;
+                font-style: normal;
+                font-weight: 300;
+                line-height: 125%;
+                /* 22.5px */
+                letter-spacing: -0.72px;
+            }
+        }
+    }
+}
