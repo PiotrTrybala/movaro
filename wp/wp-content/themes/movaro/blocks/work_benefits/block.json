@@ -1,10 +1,10 @@
 {
-  "name": "movaro/benefits",
-  "title": "Benefits",
+  "name": "movaro/workbenefits",
+  "title": "Work Benefits",
   "description": "",
   "category": "formatting",
   "icon": "wordpress-alt",
-  "keywords": ["benefits", "movaro"],
+  "keywords": ["work benefits", "movaro"],
   "supports": {
     "anchor": true
   },
