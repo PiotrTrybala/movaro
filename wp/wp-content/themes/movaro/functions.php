@@ -14,6 +14,7 @@ function register_acf_blocks() {
     register_block_type(__DIR__ . "/blocks/about");
     register_block_type(__DIR__ . "/blocks/benefits");
     register_block_type(__DIR__ . "/blocks/work_benefits");
+    register_block_type(__DIR__ . "/blocks/story");
 }
 
 /* scripts & styles */

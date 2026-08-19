@@ -1,0 +1,15 @@
+{
+  "name": "movaro/story",
+  "title": "Story",
+  "description": "",
+  "category": "formatting",
+  "icon": "wordpress-alt",
+  "keywords": ["story", "movaro"],
+  "supports": {
+    "anchor": true
+  },
+  "acf": {
+    "mode": "edit",
+    "renderTemplate": "render.php"
+  }
+}
