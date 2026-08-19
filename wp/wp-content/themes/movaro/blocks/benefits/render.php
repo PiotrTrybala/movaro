@@ -18,6 +18,20 @@
 
     <div class="b-benefits__showcase">
         <div class="b-benefits__cell">
+            <div class="b-benefits__cell-shadow">
+                <svg xmlns="http://www.w3.org/2000/svg" width="351" height="401" viewBox="0 0 351 401" fill="none">
+                    <g filter="url(#filter0_f_4_50)">
+                        <path d="M251 192.847L235.342 221.748L192.251 301L150.252 230.811H100L141.634 152.868L169.916 100L199.777 192.444L250.757 192.847H251Z" fill="#FFD338" fill-opacity="0.78" />
+                    </g>
+                    <defs>
+                        <filter id="filter0_f_4_50" x="0" y="0" width="351" height="401" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                            <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                            <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+                            <feGaussianBlur stdDeviation="50" result="effect1_foregroundBlur_4_50" />
+                        </filter>
+                    </defs>
+                </svg>
+            </div>
             <div class="b-benefits__cell-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
                     <g clip-path="url(#clip0_11_94)">
@@ -98,6 +112,20 @@ wysokości", 'movaro') ?></p>
 pleców i karku", 'movaro') ?></p>
         </div>
         <div class="b-benefits__cell">
+            <div class="b-benefits__cell-shadow">
+                <svg xmlns="http://www.w3.org/2000/svg" width="351" height="401" viewBox="0 0 351 401" fill="none">
+                    <g filter="url(#filter0_f_4_50)">
+                        <path d="M251 192.847L235.342 221.748L192.251 301L150.252 230.811H100L141.634 152.868L169.916 100L199.777 192.444L250.757 192.847H251Z" fill="#FFD338" fill-opacity="0.78" />
+                    </g>
+                    <defs>
+                        <filter id="filter0_f_4_50" x="0" y="0" width="351" height="401" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+                            <feFlood flood-opacity="0" result="BackgroundImageFix" />
+                            <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape" />
+                            <feGaussianBlur stdDeviation="50" result="effect1_foregroundBlur_4_50" />
+                        </filter>
+                    </defs>
+                </svg>
+            </div>
             <div class="b-benefits__cell-icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 36 36" fill="none">
                     <g clip-path="url(#clip0_62_59)">
