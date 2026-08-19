@@ -5,8 +5,10 @@
 @use "global";
 @use "fonts";
 
-/* blocks styling */
-@use "../../blocks/hero/hero";
 
 /* components styling */
 @use "./components/button";
+
+/* blocks styling */
+@use "../../blocks/hero/hero";
+@use "../../blocks/about/about";

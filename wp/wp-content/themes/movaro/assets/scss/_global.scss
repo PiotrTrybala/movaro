@@ -21,10 +21,20 @@ body {
     font-family: Outfit, sans-serif;
     background-color: var(--color-bg);
     color: var(--color-fg);
+    width: 100%;
+}
+
+#app {
+    width: 100%;
 }
 
 h1, h2, h3, h4, h5, h6 {
     margin: 0;
     padding: 0;
     border: 0;
+}
+
+.container {
+    margin-left: clamp(15px, calc((100vw - 1184px) * 300 / 736), 300px);
+    margin-right: clamp(15px, calc((100vw - 1184px) * 300 / 736), 300px);
 }
