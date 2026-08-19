@@ -4,11 +4,6 @@
     margin-bottom: 115px;
     padding: 81px 147px;
 
-    @media (width < 768px) {
-        padding-left: 0;
-        padding-right: 0;
-    }
-
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -21,6 +16,13 @@
 
     margin-left: clamp(15px, calc((100vw - 1184px) * 153 / 736), 153px);
     margin-right: clamp(15px, calc((100vw - 1184px) * 153 / 736), 153px);
+
+    @media (width < 768px) {
+        padding-left: 15px;
+        padding-right: 15px;
+        margin-left: 0;
+        margin-right: 0;
+    }
 
     &__deco {
         position: absolute;
@@ -90,6 +92,12 @@
             top: 64px;
             transform: translateX(-75%);
 
+            @media (width < 576px) {
+                svg {
+                    width: 300px;
+                }
+            }
+
             // svg {
             //     fill: rgba(255, 211, 56, 0.76);
             //     filter: blur(50px);
@@ -119,7 +127,6 @@
             font-style: normal;
             font-weight: 500;
             line-height: 125%;
-            /* 22.5px */
             letter-spacing: -0.72px;
             margin-top: 26px;
         }

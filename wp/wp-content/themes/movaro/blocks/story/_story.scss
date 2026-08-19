@@ -6,7 +6,7 @@
     &__header {
         color: var(--color-secondary-accent);
         font-family: Outfit;
-        font-size: 50px;
+        font-size: clamp(30px, 25.145px + 1.2945vw, 50px);
         font-style: normal;
         font-weight: 500;
         line-height: 125%;
@@ -19,16 +19,28 @@
     }
 
     &__photos {
+        margin-top: 60px;
         display: grid;
         grid-template-columns: 2fr 1fr 1fr;
         grid-template-rows: 1fr;
-        margin-top: 60px;
         column-gap: 29px;
+
+        @media (width < 768px) {
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: auto auto;
+            row-gap: 30px;
+        }
     }
 
     &__photo {
         width: 100%;
         border-radius: 8px;
+
+        @media (width < 768px) {
+            &:first-of-type {
+                grid-column: 1 / -1;
+            }
+        }
 
         img {
             width: 100%;

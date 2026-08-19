@@ -40,6 +40,6 @@ h1, h2, h3, h4, h5, h6 {
     margin-right: clamp(15px, calc((100vw - 1184px) * 300 / 736), 300px);
 }
 
-// * {
-//   outline: 1px solid #f00 !important;
-// }
+* {
+  outline: 1px solid #f00 !important;
+}
