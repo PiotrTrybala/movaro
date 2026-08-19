@@ -1,29 +1,42 @@
 <?php
 $image = get_field("about_us_image");
+
+$title1 = get_field("title_1");
+$list1 = get_field("list_1");
+$paragraph1 = get_field("paragraph_1");
+$label_button_1 = get_field("label_button_1");
+$url_button_1 = get_field("url_button_1");
+$client_info = get_field("client_info");
+
+
 ?>
 
 <section class="b-about container">
 
     <div class="b-about__image">
-        <?= wp_get_attachment_image($image['ID'], 'large'); ?>
+        <?php if ($image): ?>
+            <?= wp_get_attachment_image($image['ID'], 'large'); ?>
+        <?php endif; ?>
     </div>
     <div class="b-about__content">
         <header class="b-about__content-header">
-            <h2>Blat zawsze jak nowy - regeneracja za darmo!</h2>
+            <h2><?= $title1 ?></h2>
             <ul class="b-about__content-list">
-                <li>Darmowa regeneracja w ciągu 5-ciu lat od zakupu</li>
-                <li>Profesjonalne szlifowanie i malowanie</li>
-                <li>Blat jak nowy bez dodatkowych kosztów</li>
+                <?php if ($list1 && is_iterable($list1)): ?>
+                    <?php foreach ($list1 as $item): ?>
+                        <li><?= $item['point'] ?></li>
+                    <?php endforeach; ?>
+                <?php endif; ?>
             </ul>
         </header>
-        <p class="b-about__content-paragraph">
-            Zależy nam na tym, aby Twoje biurko wyglądało doskonale przez lata! Dlatego oferujemy wyjątkową gwarancję na blat – jeśli w ciągu 5 lat od zakupu Twój blat ulegnie zużyciu lub wymaga odświeżenia, wyślij go do nas, a my zajmiemy się jego regeneracją zupełnie za darmo.
-        </p>
-        <a href="#" class="b-about__content-cta-button button--full">
+        <div class="b-about__content-paragraph">
+            <p><?= $paragraph1 ?></p>
+        </div>
+        <a href="<?= $url_button_1 ?>" class="b-about__content-cta-button button--full">
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
                 <path d="M13.5 8.99993C13.4964 8.60535 13.3374 8.2281 13.0575 7.94993L9.84 4.72493C9.69948 4.58524 9.50939 4.50684 9.31125 4.50684C9.11311 4.50684 8.92302 4.58524 8.7825 4.72493C8.7122 4.79465 8.65641 4.8776 8.61833 4.969C8.58026 5.06039 8.56065 5.15842 8.56065 5.25743C8.56065 5.35644 8.58026 5.45447 8.61833 5.54586C8.65641 5.63726 8.7122 5.72021 8.7825 5.78993L11.25 8.24993H3.75C3.55109 8.24993 3.36032 8.32895 3.21967 8.4696C3.07902 8.61025 3 8.80102 3 8.99993C3 9.19884 3.07902 9.38961 3.21967 9.53026C3.36032 9.67091 3.55109 9.74993 3.75 9.74993H11.25L8.7825 12.2174C8.64127 12.3577 8.56154 12.5483 8.56083 12.7473C8.56013 12.9463 8.63852 13.1375 8.77875 13.2787C8.91898 13.4199 9.10958 13.4996 9.3086 13.5003C9.50762 13.5011 9.69877 13.4227 9.84 13.2824L13.0575 10.0574C13.3392 9.77742 13.4983 9.39711 13.5 8.99993Z" fill="#04071E" />
             </svg>
-            <span>Wypełnij formularz i zyskaj gwarancję</span>
+            <span><?= $label_button_1 ?></span>
         </a>
         <span class="b-about__content-label">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -38,7 +51,7 @@ $image = get_field("about_us_image");
                     </clipPath>
                 </defs>
             </svg>
-            <span>Wysyłka na koszt klienta</span>
+            <span><?= $client_info ?></span>
         </span>
     </div>
 
