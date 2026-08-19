@@ -4,6 +4,11 @@
     margin-bottom: 115px;
     padding: 81px 147px;
 
+    @media (width < 768px) {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -17,7 +22,6 @@
     margin-left: clamp(15px, calc((100vw - 1184px) * 153 / 736), 153px);
     margin-right: clamp(15px, calc((100vw - 1184px) * 153 / 736), 153px);
 
-
     &__deco {
         position: absolute;
         overflow: hidden;
@@ -29,18 +33,26 @@
         display: flex;
         justify-content: center;
         align-items: center;
+
+        @media (width < 1024px) {
+            display: none;
+        }
     }
 
     &__header {
+
         h2 {
             text-align: center;
-            font-size: 50px;
+            font-size: clamp(30px, 25.145px + 1.2945vw, 50px);
             font-style: normal;
             font-weight: 500;
             line-height: 125%;
             /* 62.5px */
             letter-spacing: -2px;
-            width: 837px;
+        }
+
+        @media (width < 1024px) {
+            padding: 0 32px;
         }
     }
 
@@ -49,11 +61,14 @@
         z-index: 2;
 
         display: grid;
-
         grid-template-columns: repeat(3, 1fr);
         grid-template-rows: 1fr;
         column-gap: 30px;
 
+        @media (width < 1024px) {
+            grid-template-columns: 1fr;
+            row-gap: 30px;
+        }
     }
 
 
@@ -61,9 +76,7 @@
 
         background-color: var(--color-bg);
         border-radius: 7px;
-        padding-left: 40px;
-        padding-top: 53px;
-        padding-bottom: 53px;
+        padding: 53px 40px;
         position: relative;
         display: flex;
         flex-direction: column;
@@ -74,21 +87,21 @@
             height: 201px;
             z-index: -10;
             left: 0;
-            transform: translateX(-100%);
             top: 64px;
+            transform: translateX(-75%);
 
-            svg {
-                fill: rgba(255, 211, 56, 0.76);
-                filter: blur(50px);
-            }
+            // svg {
+            //     fill: rgba(255, 211, 56, 0.76);
+            //     filter: blur(50px);
+            // }
         }
 
         &:nth-of-type(2) &-shadow {
             transform: translateX(0);
         }
-        
+
         &:nth-of-type(3) &-shadow {
-            transform: translateX(100%);
+            left: 50%;
         }
 
         &-icon {
