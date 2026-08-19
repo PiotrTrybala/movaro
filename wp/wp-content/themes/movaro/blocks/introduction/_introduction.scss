@@ -1,0 +1,85 @@
+.b-introduction {
+
+    margin-top: 115px;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    column-gap: 56px;
+
+    &__photo {
+        width: 100%;
+        height: 752px;
+        border-radius: 8px;
+
+        img {
+            width: 100%;
+            height: 100%;
+            border-radius: inherit;
+            object-fit: cover;
+        }
+    }
+
+    &__container {
+
+        display: flex;
+        flex-direction: column;
+
+        &-header {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+
+            h2 {
+                font-size: 50px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 125%;
+                /* 62.5px */
+                letter-spacing: -2px;
+            }
+
+            h3 {
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 300;
+                line-height: 125%;
+                letter-spacing: -0.64px;
+            }
+
+        }
+
+        &-partner {
+            margin-top: 18px;
+            padding: 32px;
+            border: 1px dashed var(--color-accent-bg-2);
+            background-color: var(--color-bg);
+            border-radius: 7px;
+
+            p {
+                margin-top: 16px;
+                font-size: 16px;
+                font-style: normal;
+                font-weight: 300;
+                line-height: 125%;
+                /* 20px */
+                letter-spacing: -0.64px;
+            }
+        }
+
+        &-logo {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            column-gap: 15px;
+
+            svg {
+                transform: rotate(90deg);
+            }
+        }
+
+        &-content {
+            margin-top: 47px;
+        }
+    }
+}

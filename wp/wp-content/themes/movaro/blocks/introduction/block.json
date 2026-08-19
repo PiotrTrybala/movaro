@@ -1,0 +1,15 @@
+{
+  "name": "movaro/introduction",
+  "title": "Introduction",
+  "description": "",
+  "category": "formatting",
+  "icon": "wordpress-alt",
+  "keywords": ["hero", "movaro"],
+  "supports": {
+    "anchor": true
+  },
+  "acf": {
+    "mode": "edit",
+    "renderTemplate": "render.php"
+  }
+}
