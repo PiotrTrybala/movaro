@@ -22,6 +22,7 @@ body {
     background-color: var(--color-bg);
     color: var(--color-fg);
     width: 100%;
+    overflow-x: hidden; // TODO: Find better solution for shadow overflowing in Showcase block
 }
 
 #app {
