@@ -1,3 +1,7 @@
+<?php
+$logo = get_field("logo", "options");
+?>
+
 <section class="b-hero">
     <div class="b-hero__deco">
         <svg xmlns="http://www.w3.org/2000/svg" width="441" height="742" viewBox="0 0 441 742" fill="none">
