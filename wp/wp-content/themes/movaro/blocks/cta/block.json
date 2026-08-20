@@ -1,0 +1,15 @@
+{
+  "name": "movaro/cta",
+  "title": "Call to Action",
+  "description": "",
+  "category": "formatting",
+  "icon": "wordpress-alt",
+  "keywords": ["cta", "movaro"],
+  "supports": {
+    "anchor": true
+  },
+  "acf": {
+    "mode": "edit",
+    "renderTemplate": "render.php"
+  }
+}
