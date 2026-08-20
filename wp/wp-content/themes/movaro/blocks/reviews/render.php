@@ -6,6 +6,7 @@ $reviews = get_field("reviews") ?? [];
 ?>
 
 <section class="b-reviews container">
+    <div class="b-reviews__gradient"></div>
     <header class="b-reviews__header">
         <h2><?= htmlspecialchars($title1) ?></h2>
     </header>
