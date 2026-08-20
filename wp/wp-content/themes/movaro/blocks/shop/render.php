@@ -5,24 +5,24 @@ $title2 = get_field('title_2') ?? '';
 $products = get_field("products") ?? [];
 ?>
 
-<section class="b-shop">
+<section class="b-shop container">
     <header class="b-shop__header">
-        <h2><?= htmlspecialchars($title1) ?></h2>
-        <h3><?= htmlspecialchars($title2) ?></h3>
+        <h3><?= htmlspecialchars($title1) ?></h3>
+        <h2><?= htmlspecialchars($title2) ?></h2>
     </header>
     <div class="b-shop__content">
         <?php foreach ($products as $product): ?>
             <div class="b-shop__item">
-                <span class="b-stop__item-discount"><?= __("Dziś", 'movaro') ?>-<?= htmlspecialchars($product['discount_rate']) ?>%</span>
+                <span class="b-shop__item-discount"><?= __("Dziś ", 'movaro') ?>-<?= htmlspecialchars($product['discount_rate']) ?>%</span>
 
-                <div class="b-stop__item-thumbnail">
+                <div class="b-shop__item-thumbnail">
                     <?php $thumbnail = $product['thumbnail']; ?>
-                    <?= wp_get_attachment_image($thumbnail['ID'], 'thumbnail') ?>
+                    <?= wp_get_attachment_image($thumbnail['ID'], 'sma;l') ?>
                 </div>
 
-                <div class="b-stop__item-content">
+                <div class="b-shop__item-content">
                     <h3><?= $product['title'] ?></h3>
-                    <ul class="b-stop__item-content-list">
+                    <ul class="b-shop__item-content-list">
                         <?php $items = $product['list']; ?>
                         <?php foreach ($items as $item): ?>
                             <li><?= $item['item'] ?></li>
@@ -30,29 +30,29 @@ $products = get_field("products") ?? [];
                     </ul>
                 </div>
 
-                <div class="b-stop__item-dimensions">
-                    <div class="b-stop__item-dimensions-item">
-                        <h5><?= $product['min_height'] ?></h5>
+                <div class="b-shop__item-dimensions">
+                    <div class="b-shop__item-dimensions-item">
+                        <h5><?= $product['min_height'] ?><?= __("cm", 'movaro') ?></h5>
                         <span><?= __("Wysokość min.") ?></span>
                     </div>
-                    <div class="b-stop__item-dimensions-item">
-                        <h5><?= $product['max_height'] ?></h5>
+                    <div class="b-shop__item-dimensions-item">
+                        <h5><?= $product['max_height'] ?><?= __("cm", 'movaro') ?></h5>
                         <span><?= __("Wysokość max.") ?></span>
                     </div>
-                    <div class="b-stop__item-dimensions-item">
-                        <h5><?= $product['width'] ?></h5>
+                    <div class="b-shop__item-dimensions-item">
+                        <h5><?= $product['width'] ?><?= __("cm", 'movaro') ?></h5>
                         <span><?= __("Szerokość") ?></span>
                     </div>
                 </div>
 
-                <div class="b-stop__item-price">
-                    <span class="b-stop__item-price-regular"><?= $product['price'] ?></span>
+                <div class="b-shop__item-price">
+                    <span class="b-shop__item-price-regular"><?= number_format($product['price'], 2, ',', ''); ?><?= __("zł", 'movaro') ?></span>
                     <?php if ($product['discount']): ?>
-                        <span class="b-stop__item-price-discount"><?= $product['discount_price'] ?></span>
+                        <span class="b-shop__item-price-discount"><?= number_format($product['discount_price'], 2, ',', '') ?><?= __("zł", 'movaro') ?></span>
                     <?php endif; ?>
                 </div>
 
-                <a href="<?= $product['link'] ?>" class="b-hero__cta-button button--full">
+                <a href="<?= $product['link'] ?>" class="b-shop__item-button button--full">
                     <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
                         <path d="M15.5145 5.63618C15.3263 4.78193 14.6528 4.11143 13.7985 3.92693C13.3433 3.82868 12.8873 3.74468 12.4305 3.67493C12.4118 3.40718 12.39 3.14318 12.366 2.88893C12.267 1.84643 11.4728 1.01318 10.434 0.862426C9.40278 0.713176 8.59878 0.713176 7.56753 0.862426C6.52878 1.01318 5.73378 1.84643 5.63478 2.88968C5.61078 3.14393 5.58903 3.40793 5.57028 3.67568C5.11353 3.74618 4.65753 3.82943 4.20228 3.92768C3.34728 4.11218 2.67378 4.78343 2.48628 5.63768C1.79103 8.79518 1.79103 11.8657 2.48628 15.0239C2.67378 15.8782 3.34728 16.5494 4.20228 16.7339C5.79453 17.0774 7.39728 17.2499 9.00003 17.2499C10.6028 17.2499 12.2063 17.0782 13.7978 16.7339C14.652 16.5494 15.3255 15.8782 15.5138 15.0239C16.209 11.8664 16.209 8.79593 15.5138 5.63768L15.5145 5.63618ZM7.12803 3.03068C7.16103 2.68493 7.43628 2.39693 7.78278 2.34668C8.67078 2.21768 9.33078 2.21768 10.2188 2.34668C10.5653 2.39693 10.8405 2.68493 10.8735 3.03068C10.8878 3.18068 10.9013 3.33593 10.9133 3.49343C9.63903 3.38468 8.36253 3.38468 7.08828 3.49343C7.10103 3.33593 7.11378 3.18068 7.12803 3.03068ZM14.0498 14.6999C13.9883 14.9789 13.7603 15.2062 13.482 15.2662C10.509 15.9082 7.49253 15.9082 4.51878 15.2662C4.24053 15.2062 4.01253 14.9789 3.95103 14.7007C3.30378 11.7599 3.30378 8.90018 3.95103 5.95943C4.01253 5.68118 4.24053 5.45393 4.51878 5.39393C4.84203 5.32418 5.16528 5.26268 5.48853 5.20793C5.46078 5.96543 5.45553 6.64268 5.47128 7.07018C5.48703 7.48418 5.82453 7.80518 6.24903 7.79168C6.66303 7.77593 6.98553 7.42868 6.97053 7.01393C6.95403 6.56768 6.96378 5.82068 6.99828 5.00768C7.66503 4.94393 8.33253 4.91168 9.00078 4.91168C9.66903 4.91168 10.3365 4.94393 11.0033 5.00768C11.0378 5.82068 11.0475 6.56768 11.031 7.01393C11.0153 7.42793 11.3385 7.77593 11.7525 7.79168C11.7623 7.79168 11.7713 7.79168 11.781 7.79168C12.1823 7.79168 12.5153 7.47368 12.5295 7.06943C12.5453 6.64193 12.54 5.96393 12.5123 5.20718C12.8363 5.26193 13.1595 5.32343 13.4828 5.39318C13.761 5.45318 13.989 5.68043 14.0505 5.95868C14.6978 8.89943 14.697 11.7592 14.0498 14.6999Z" fill="#04071E" />
                     </svg>
@@ -60,7 +60,7 @@ $products = get_field("products") ?? [];
                 </a>
 
                 <footer class="b-shop__item-footer">
-                    <span class="b-stop__item-footer-item">
+                    <span class="b-shop__item-footer-item">
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
                             <g clip-path="url(#clip0_43_134)">
                                 <path d="M27.474 24.8586C26.9318 24.859 26.4016 24.6986 25.9505 24.3976C25.4994 24.0966 25.1478 23.6686 24.94 23.1678C24.7322 22.6669 24.6776 22.1156 24.7831 21.5837C24.8887 21.0518 25.1496 20.5632 25.5329 20.1796C25.9162 19.796 26.4047 19.5347 26.9365 19.4288C27.4683 19.3229 28.0196 19.377 28.5206 19.5845C29.0217 19.7919 29.4499 20.1432 29.7512 20.5941C30.0526 21.045 30.2134 21.575 30.2134 22.1173C30.213 22.8439 29.9244 23.5407 29.4108 24.0546C28.8972 24.5686 28.2006 24.8578 27.474 24.8586ZM27.474 20.376C27.1296 20.3756 26.7927 20.4774 26.5061 20.6685C26.2194 20.8596 25.9959 21.1314 25.8638 21.4495C25.7317 21.7677 25.697 22.1179 25.7639 22.4558C25.8309 22.7937 25.9966 23.1042 26.24 23.3479C26.4835 23.5916 26.7938 23.7577 27.1316 23.825C27.4694 23.8924 27.8197 23.858 28.138 23.7263C28.4563 23.5945 28.7283 23.3714 28.9198 23.085C29.1112 22.7985 29.2134 22.4618 29.2134 22.1173C29.2132 21.6559 29.03 21.2134 28.7039 20.8869C28.3778 20.5604 27.9355 20.3767 27.474 20.376Z" fill="black" />
@@ -82,7 +82,7 @@ $products = get_field("products") ?? [];
                         </svg>
                         <span><?= $product['delivery_label'] ?></span>
                     </span>
-                    <span class="b-stop__item-footer-item">
+                    <span class="b-shop__item-footer-item">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                             <path d="M23.2001 16.8001L21.6001 13.6001V11.2001L20.0001 10.4001L20.8001 8.8001H22.4001V7.2001L20.0001 3.2001H10.4001V1.6001L6.4001 2.4001L5.6001 4.0001L1.6001 4.8001L2.4001 15.2001L4.8001 16.8001V17.6001L5.6001 18.4001H8.0001L9.6001 19.2001L11.2001 21.6001L12.8001 20.8001V21.6001H13.6001L14.4001 20.8001H17.6001V21.6001L20.8001 22.4001L20.0001 20.0001L23.2001 16.8001ZM18.4001 20.9753V20.0001H14.0689L13.6001 20.4689V19.5057L11.4737 20.5689L10.1473 18.5801L8.1881 17.6001H5.93049L5.59929 17.2689V16.3721L3.16649 14.7505L2.4505 5.4457L6.13929 4.70811L6.93929 3.10811L9.5985 2.57607V4.0001H19.5457L21.5985 7.42168V8.0001H20.3041L18.9249 10.7577L20.7985 11.6945V13.7889L22.2249 16.6417L19.0833 19.7833L19.5785 21.2697L18.4001 20.9753Z" fill="black" />
                         </svg>
