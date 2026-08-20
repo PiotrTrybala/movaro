@@ -1,0 +1,15 @@
+{
+  "name": "movaro/reviews",
+  "title": "Reviews",
+  "description": "",
+  "category": "formatting",
+  "icon": "wordpress-alt",
+  "keywords": ["reviews", "movaro"],
+  "supports": {
+    "anchor": true
+  },
+  "acf": {
+    "mode": "edit",
+    "renderTemplate": "render.php"
+  }
+}
