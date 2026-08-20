@@ -18,11 +18,13 @@ function register_acf_blocks() {
     register_block_type(__DIR__ . "/blocks/introduction");
     register_block_type(__DIR__ . "/blocks/cta");
     register_block_type(__DIR__ . "/blocks/reviews");
+    register_block_type(__DIR__ . "/blocks/shop");
 }
 
 /* scripts & styles */
 
 add_action('wp_enqueue_scripts', 'enqueue_scripts');
+add_action('admin_enqueue_scripts', 'enqueue_scripts');
 
 function dynamicAssetVersion(string $filePath): string
 {
