@@ -98,6 +98,10 @@
         border: 1px solid var(--color-accent-bg-1);
         position: relative;
 
+        &:nth-of-type(2) &-shadow, &:nth-of-type(3) &-shadow {
+            display: none;
+        }
+
         &-shadow {
 
             position: absolute;
@@ -133,6 +137,12 @@
             display: flex;
             justify-content: center;
             align-items: center;
+
+            img {
+                width: 36px;
+                height: 36px;
+                object-fit: cover;
+            }
         }
 
         &-heading {

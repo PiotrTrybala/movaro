@@ -24,7 +24,7 @@ $client_info = get_field("client_info");
             <ul class="b-about__content-list">
                 <?php if ($list1 && is_iterable($list1)): ?>
                     <?php foreach ($list1 as $item): ?>
-                        <li><?= $item['point'] ?></li>
+                        <li><?= $item['point'] ?? '' ?></li>
                     <?php endforeach; ?>
                 <?php endif; ?>
             </ul>
