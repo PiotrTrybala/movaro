@@ -1,12 +1,11 @@
 <?php
-$photos = get_field("gallery");
+$title1 = get_field("title_1") ?? '';
+$photos = get_field("gallery") ?? [];
 ?>
 
 <section class="b-story container">
     <header class="b-story__header">
-        <h2><span class="b-story__header-pre">Praca</span> na stojąco może pomóc w zwiększeniu poziomu energii
-            i koncentracji. Badania pokazują, że osoby, które mogą zmieniać pozycję pracy, są bardziej skoncentrowane, zmotywowane
-            i efektywne. </h2>
+        <h2><?= htmlspecialchars($title1) ?></h2>
     </header>
 
     <div class="b-story__photos">
