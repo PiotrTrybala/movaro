@@ -1,0 +1,56 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: {{ db_container_name }}
+    restart: always
+    environment:
+      MYSQL_DATABASE: {{ db_name }}
+      MYSQL_USER: {{ db_user }}
+      MYSQL_PASSWORD: {{ db_password }}
+      MYSQL_ROOT_PASSWORD: {{ db_root_password }}
+    volumes:
+      - {{ data_dir }}/db_data:/var/lib/mysql
+    networks:
+      - staging
+
+  wordpress:
+    image: {{ docker_image }}
+    container_name: {{ app_container_name }}
+    restart: always
+    depends_on:
+      - db
+    environment:
+      WORDPRESS_DB_HOST: db
+      WORDPRESS_DB_NAME: {{ db_name }}
+      WORDPRESS_DB_USER: {{ db_user }}
+      WORDPRESS_DB_PASSWORD: {{ db_password }}
+      WORDPRESS_DEBUG: true
+      WORDPRESS_CONFIG_EXTRA: |
+        define('WP_HOME', 'https://{{ domain_name }}');
+        define('WP_SITEURL', 'https://{{ domain_name }}');
+    volumes:
+      - {{ data_dir }}/wp_uploads:/var/www/html/wp-content/uploads
+    networks:
+      - staging
+
+  caddy:
+    image: caddy:2-alpine
+    container_name: caddy_proxy_staging
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+      - {{ data_dir }}/caddy_data:/data
+      - {{ data_dir }}/caddy_config:/config
+    depends_on:
+      - wordpress
+    networks:
+      - staging
+
+networks:
+  staging:
+    driver: bridge

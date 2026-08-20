@@ -1,0 +1,9 @@
+
+{{ domain_name }} {
+
+    basic_auth {
+        admin $2a$12$yOkEPB2kPNG2a7aqSbxANe3MWxQo.1IurNhTPqQHqZV4oGq1konI2
+    }
+
+    reverse_proxy wordpress:{{ app_host_port }}
+}

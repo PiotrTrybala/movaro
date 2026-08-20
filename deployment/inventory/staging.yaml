@@ -1,0 +1,12 @@
+all:
+  children:
+    staging:
+      hosts:
+        staging_server:
+          ansible_host: 2.29.4.239
+          ansible_user: root 
+          ansible_ssh_private_key_file: ~/.ssh/staging       
+
+    wordpress_nodes:
+      hosts:
+        staging_server: {}           

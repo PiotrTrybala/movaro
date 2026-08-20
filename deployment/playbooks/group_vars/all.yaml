@@ -1,0 +1,4 @@
+---
+local_db_name: introdb
+local_db_user: admin
+local_db_password: admin

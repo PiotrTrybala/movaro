@@ -1,0 +1,70 @@
+---
+- name: Rollback staging to previous package release
+  hosts: staging
+  gather_facts: true
+  become: true
+
+  vars:
+    # The image tag to roll back to. Must be passed as an extra var, e.g.:
+    #   ansible-playbook rollback.yml -e rollback_image=ghcr.io/your-org/your-app:v1.2.2
+    rollback_image: "{{ required_rollback_image | default('') }}"
+    # If you want a safety check, you can also define:
+    # confirm_rollback: false
+
+  tasks:
+    - name: Fail if no rollback image tag is provided
+      ansible.builtin.fail:
+        msg: "You must specify 'rollback_image' as an extra var, e.g. -e rollback_image=ghcr.io/...:v1.2.2"
+      when: rollback_image == ""
+
+    # Optional: confirm the rollback in an interactive session
+    # - name: Ask for confirmation (if you run with --ask-vars-pass)
+    #   pause:
+    #     prompt: "Are you sure you want to rollback to {{ rollback_image }}? (yes/no)"
+    #   when: confirm_rollback | default(false) | bool
+
+    - name: Authenticate with GitHub Container Registry (GHCR)
+      community.docker.docker_login:
+        registry_url: ghcr.io
+        username: "{{ ghcr_username }}"
+        password: "{{ ghcr_pat }}"
+        reauthorize: true
+
+    - name: Pull the specific rollback image from GHCR
+      community.docker.docker_image:
+        name: "{{ rollback_image }}"
+        source: pull
+        force_source: true
+
+    # Render the compose file with the chosen rollback image
+    - name: Render docker-compose.yml with rollback image
+      ansible.builtin.template:
+        src: templates/docker-compose.yml.j2
+        dest: "{{ data_dir }}/docker-compose.yml"
+        mode: "0644"
+      vars:
+        # Override the image variable used in the template
+        docker_image: "{{ rollback_image }}"
+
+    # Caddyfile usually remains unchanged – render it anyway for consistency
+    - name: Render Caddyfile on target server
+      ansible.builtin.template:
+        src: templates/Caddyfile.j2
+        dest: "{{ data_dir }}/Caddyfile"
+        mode: "0644"
+
+    - name: Redeploy services with the rolled-back image
+      community.docker.docker_compose_v2:
+        project_src: "{{ data_dir }}"
+        state: present
+        pull: always         # Ensure we use the pulled image
+        recreate: always     # Force recreation of containers
+
+    - name: Verify running containers after rollback
+      community.docker.docker_host_info:
+        containers: true
+      register: docker_info
+
+    - name: Print running containers status
+      ansible.builtin.debug:
+        msg: "Rollback to {{ rollback_image }} completed. Caddy is routing traffic from {{ domain_name }} to WordPress."

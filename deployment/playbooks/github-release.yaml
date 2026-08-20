@@ -1,0 +1,29 @@
+---
+- name: Fetch latest GHCR package tag
+  hosts: localhost
+  gather_facts: false
+  vars_files:
+    - group_vars/staging.yaml
+  vars:
+    owner_type: "users"                                   # Use "users" or "orgs"
+    owner_name: "piotrtrybala"
+    package_name: "bartlomiejtrybala-stie"
+
+  tasks:
+    - name: Query GHCR package versions from GitHub API
+      ansible.builtin.uri:
+        url: "https://api.github.com/{{ owner_type }}/{{ owner_name }}/packages/container/{{ package_name }}/versions"
+        headers:
+          Accept: "application/vnd.github+json"
+          Authorization: "{{ 'Bearer ' + ghcr_pat }}"
+        return_content: true
+        status_code: 200
+      register: ghcr_response
+
+    - name: Extract the latest non-latest version tag
+      ansible.builtin.set_fact:
+        latest_tag: "{{ (ghcr_response.json[0].metadata.container.tags | reject('eq', 'latest')) | first }}"
+
+    - name: Display the latest tag
+      ansible.builtin.debug:
+        msg: "The latest package tag is: {{ latest_tag }}"

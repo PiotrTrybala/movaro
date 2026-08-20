@@ -1,0 +1,230 @@
+---
+- name: Dump application's database
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  vars_files:
+    - "{{ playbook_dir }}/../group_vars/all.yaml"
+  
+  vars:
+    local_dump_path: "{{ playbook_dir }}/tmp"
+    source_compose_dir: "{{ playbook_dir }}/../../"
+    source_service_name: "db"
+
+  tasks:
+    - name: Ensure local dump directory exists
+      ansible.builtin.file:
+        path: "{{ local_dump_path }}"
+        state: directory
+        mode: '0755'
+
+    - name: Get container ID of the local MySQL service
+      ansible.builtin.command:
+        cmd: "docker compose -f {{ source_compose_dir }}/docker-compose.yaml ps -q {{ source_service_name }}"
+      register: container_id
+      changed_when: false
+
+    - name: Set container ID fact
+      ansible.builtin.set_fact:
+        source_container_id: "{{ container_id.stdout }}"
+      failed_when: container_id.stdout == ""
+
+    - name: Create database dump from the container
+      ansible.builtin.shell:
+        cmd: >
+          docker exec -i -e MYSQL_PWD='{{ local_db_password }}' {{ source_container_id }}
+          mysqldump -u {{ local_db_user }} -h 127.0.0.1
+          --single-transaction --quick {{ local_db_name }}
+          > "{{ local_dump_path }}/dump.sql"
+      args:
+        executable: /bin/bash
+      no_log: true
+
+    - name: Verify dump file was created and is not empty
+      ansible.builtin.stat:
+        path: "{{ local_dump_path }}/dump.sql"
+      register: dump_stat
+      failed_when: not dump_stat.stat.exists or dump_stat.stat.size == 0
+
+
+- name: Deploy BartlomiejTrybala.pl to staging
+  hosts: staging
+  gather_facts: true
+  become: true
+
+  vars:
+    local_dump_path: "{{ playbook_dir }}/tmp"
+    mysql_container_name: ""
+
+  tasks:
+
+    - name: Install required system packages
+      apt:
+        pkg:
+          - ca-certificates
+          - curl
+          - gnupg
+          - software-properties-common
+          - python3-pip
+          - python3-venv
+          - python3-setuptools
+        state: latest
+        update_cache: true
+
+    - name: Create keyrings directory
+      file:
+        path: /etc/apt/keyrings
+        state: directory
+        mode: '0755'
+
+    - name: Download Docker GPG key
+      get_url:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        dest: /etc/apt/keyrings/docker.asc
+        mode: '0644'
+        force: true
+
+    - name: De-armor Docker GPG key for APT
+      command: gpg --dearmor --yes --output /etc/apt/keyrings/docker.gpg /etc/apt/keyrings/docker.asc
+      args:
+        creates: /etc/apt/keyrings/docker.gpg
+
+    - name: Add Docker repository
+      apt_repository:
+        repo: "deb [signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
+        state: present
+        filename: docker
+
+    - name: Update apt and install Docker Engine
+      apt:
+        pkg:
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+          - docker-buildx-plugin
+          - docker-compose-plugin
+        state: latest
+        update_cache: true
+
+    - name: Stop existing Docker Compose services if running
+      community.docker.docker_compose_v2:
+        project_src: "{{ data_dir }}"
+        state: absent
+      ignore_errors: true
+
+    - name: Wipe corrupted MySQL data directory on staging server
+      ansible.builtin.file:
+        path: "{{ data_dir }}/db_data"
+        state: absent
+
+    - name: Ensure persistent host storage directories exist
+      ansible.builtin.file:
+        path: "{{ item }}"
+        state: directory
+        mode: "0755"
+      loop:
+        - "{{ data_dir }}"
+        - "{{ data_dir }}/db_data"
+        - "{{ data_dir }}/wp_uploads"
+        - "{{ data_dir }}/caddy_data"
+        - "{{ data_dir }}/caddy_config"
+
+    - name: Authenticate with GitHub Container Registry (GHCR)
+      community.docker.docker_login:
+        registry_url: ghcr.io
+        username: "{{ ghcr_username }}"
+        password: "{{ ghcr_pat }}"
+        reauthorize: true
+
+    - name: Pull latest WordPress application image from GHCR
+      community.docker.docker_image:
+        name: "{{ docker_image }}"
+        source: pull
+        force_source: true
+
+    - name: Copy local database dump to staging server
+      ansible.builtin.copy:
+        src: "{{ local_dump_path }}/dump.sql"
+        dest: "{{ data_dir }}/dump.sql"
+        mode: "0644"
+
+    - name: Render docker-compose.yml on target server
+      ansible.builtin.template:
+        src: templates/docker-compose.yml.j2
+        dest: "{{ data_dir }}/docker-compose.yml"
+        mode: "0644"
+
+    - name: Render Caddyfile on target server
+      ansible.builtin.template:
+        src: templates/Caddyfile.j2
+        dest: "{{ data_dir }}/Caddyfile"
+        mode: "0644"
+
+    - name: Deploy services using Docker Compose
+      community.docker.docker_compose_v2:
+        project_src: "{{ data_dir }}"
+        state: present
+        pull: always
+        recreate: always
+
+    - name: Discover target MySQL container ID
+      ansible.builtin.command:
+        cmd: "docker compose -f {{ data_dir }}/docker-compose.yml ps -q {{ docker_service_name | default('db') }}"
+      register: container_id
+      until: container_id.stdout != ""
+      retries: 10
+      delay: 3
+      changed_when: false
+
+    # - name: Discover target Wordpress container ID
+    #   ansible.builtin.command:
+    #     cmd: "docker compose -f {{ data_dir }}/docker-compose.yml ps -q {{ docker_service_name | default('wordpress') }}"
+    #   register: container_id
+    #   until: container_id.stdout != ""
+    #   retries: 10
+    #   delay: 3
+    #   changed_when: false
+
+    - name: Set target container name fact
+      ansible.builtin.set_fact:
+        mysql_container_name: "{{ container_id.stdout }}"
+
+    - name: Wait for MySQL to finish initial startup
+      ansible.builtin.command:
+        cmd: "docker exec -i {{ mysql_container_name }} mysqladmin ping -u {{ db_user }} -p'{{ db_password }}' -h 127.0.0.1"
+      register: mysql_ping
+      until: mysql_ping.rc == 0
+      retries: 15
+      delay: 3
+      changed_when: false
+      no_log: true
+
+    - name: Load dump into target MySQL container
+      ansible.builtin.shell:
+        cmd: >
+          docker exec -i -e MYSQL_PWD='{{ db_password }}' {{ mysql_container_name }}
+          mysql -u {{ db_user }} -h 127.0.0.1 {{ db_name }}
+          < "{{ data_dir }}/dump.sql"
+      no_log: true
+
+    - name: Remove dump file from staging server (cleanup)
+      ansible.builtin.file:
+        path: "{{ data_dir }}/dump.sql"
+        state: absent
+
+    # - name: Update WordPress home and siteurl for staging
+    #   ansible.builtin.shell: >
+    #     docker exec -i {{ wp_container_name }}
+    #     wp option update siteurl "https://{{ domain_name }}" --allow-root &&
+    #     docker exec -i {{ wp_container_name }}
+    #     wp option update home "https://{{ domain_name }}" --allow-root
+
+    - name: Verify running containers
+      community.docker.docker_host_info:
+        containers: true
+      register: docker_info
+
+    - name: Print running containers status
+      ansible.builtin.debug:
+        msg: "Deployment complete. Caddy is routing traffic from {{ domain_name }} to WordPress."

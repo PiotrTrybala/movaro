@@ -1,0 +1,17 @@
+---
+ansible_host: 2.29.4.239
+ansible_user: root
+app_port: 80
+
+env: staging
+domain_name: movaro.staging.toolkit23.com
+
+docker_image: ghcr.io/piotrtrybala/bartlomiejtrybala-site:v0.0.4
+
+db_name: staging
+db_container_name: bartlomiejtrybala-staging
+
+app_container_name: bartlomiejtrybala-site
+app_host_port: 80
+
+data_dir: /opt/bartlomiejtrybala_staging
