@@ -2,48 +2,48 @@
     position: relative;
     display: flex;
     flex-direction: row;
-    overflow: hidden;
+    background-color: var(--color-bg-hero);
+    border-radius: 50px;
 
-    padding: 89px;
-    padding-left: clamp(0px, calc(-110.74px + 19.27vw), 259px);
     margin-top: 115px;
     margin-left: clamp(15px, calc((100vw - 1184px) * 153 / 736), 153px);
     margin-right: clamp(15px, calc((100vw - 1184px) * 153 / 736), 153px);
 
-    background-color: var(--color-bg-hero);
-    border-radius: 50px;
+    padding: 89px;
+    padding-left: clamp(0px, calc(-110.74px + 19.27vw), 259px);
+    overflow: hidden;
 
     @media (width < 1024px) {
         height: 527px;
         flex-direction: column;
         align-items: center;
-        margin-inline: 0;
+        margin-left: 0;
+        margin-right: 0;
     }
 
     @media (width < 576px) {
         padding: 45px;
     }
 
-    &__shadow,
-    &-top {
-        position: absolute;
-        width: 338px;
-        height: 530px;
-    }
-
     &__shadow {
+        position: absolute;
         top: 8px;
         left: 0;
+        width: 338px;
+        height: 530px;
 
         @media (width < 1024px) {
             top: auto;
             bottom: -72px;
         }
+    }
 
-        &-top {
-            top: 0;
-            right: 128px;
-        }
+    .b-cta__shadow-top {
+        position: absolute;
+        top: 0;
+        right: 128px;
+        width: 338px;
+        height: 530px;
     }
 
 
@@ -52,14 +52,15 @@
         flex-direction: column;
         justify-content: center;
         align-items: left;
-        gap: 30px;
-        width: min(100%, 576px);
+
 
         @media (width < 768px) {
             text-align: center;
             align-items: center;
         }
 
+        gap: 30px;
+        width: 576px;
 
         @media (width < 576px) {
             width: 100%;
@@ -82,8 +83,9 @@
 
     &__photo {
         position: absolute;
-        bottom: 0;
         right: clamp(-128px, calc(-512px + 26.67vw), 0px);
+
+        bottom: 0;
         overflow: hidden;
 
         @media (width < 1240px) {
@@ -101,6 +103,7 @@
         @media (width < 576px) {
             width: 489px;
             height: 252px;
+
             right: -190px;
         }
 
