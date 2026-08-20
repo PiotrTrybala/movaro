@@ -19,6 +19,7 @@ function register_acf_blocks() {
     register_block_type(__DIR__ . "/blocks/cta");
     register_block_type(__DIR__ . "/blocks/reviews");
     register_block_type(__DIR__ . "/blocks/shop");
+    register_block_type(__DIR__ . "/blocks/faq");
 }
 
 /* scripts & styles */
