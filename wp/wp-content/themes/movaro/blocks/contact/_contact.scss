@@ -9,6 +9,80 @@
     }
 
     &__content {
-        
+        padding: 128px 73px 128px 85px;
+        background-color: var(--color-bg-hero);
+        border-radius: 35px;
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        position: relative;
+    }
+
+    &__shadow {
+        position: absolute;
+        left: 0;
+        bottom: -4px;
+    }
+
+    &__header {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+
+        text-align: center;
+
+        h2 {
+            font-size: 50px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 125%;
+            /* 62.5px */
+            letter-spacing: -2px;
+        }
+
+        h3 {
+            font-size: 22px;
+            font-style: normal;
+            font-weight: 500;
+            line-height: 220%;
+            letter-spacing: -0.88px;
+        }
+    }
+
+    &__info {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+
+        &-tile {
+            padding: 20px 55px;
+            border-radius: 38px;
+            border: 1px solid var(--color-primary-accent);
+            font-size: 16px;
+            font-weight: 500;
+            width: max-content;
+        }
+    }
+
+    &__arrow {
+        position: absolute;
+        top: 450px;
+        right: 14px;
+    }
+
+    &__signature {
+        transform: rotate(-15.737deg);
+        position: absolute;
+        text-align: center;
+        font-family: "Ms Madi";
+        font-size: 33px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        letter-spacing: 0.66px;
+        width: 300px;
+        bottom: 32px;
+        right: 0;
     }
 }

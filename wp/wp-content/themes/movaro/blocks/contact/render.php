@@ -7,7 +7,7 @@ $contact_email = get_field("contact_email", "options");
 $phone_number = get_field("phone_number", "options");
 ?>
 
-<section class="b-contact">
+<section class="b-contact container">
 
     <div class="b-contact__content">
         <div class="b-contact__shadow">
@@ -20,8 +20,8 @@ $phone_number = get_field("phone_number", "options");
             <h3><?= esc_html($subtitle1); ?></h3>
         </div>
         <div class="b-contact__info">
-            <span class="b-contact__info-tile"><?= esc_html($contact_email) ?></span>
             <span class="b-contact__info-tile"><?= esc_html($phone_number) ?></span>
+            <span class="b-contact__info-tile"><?= esc_html($contact_email) ?></span>
         </div>
         <div class="b-contact__arrow">
             <svg xmlns="http://www.w3.org/2000/svg" width="59" height="58" viewBox="0 0 59 58" fill="none">
@@ -37,7 +37,7 @@ $phone_number = get_field("phone_number", "options");
         </div>
 
         <div class="b-contact__signature">
-
+            <span><?= esc_html($signature) ?></span>
         </div>
     </div>
 
