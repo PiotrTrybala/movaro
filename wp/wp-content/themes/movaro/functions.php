@@ -20,6 +20,7 @@ function register_acf_blocks() {
     register_block_type(__DIR__ . "/blocks/reviews");
     register_block_type(__DIR__ . "/blocks/shop");
     register_block_type(__DIR__ . "/blocks/faq");
+    register_block_type(__DIR__ . "/blocks/contact");
 }
 
 /* scripts & styles */

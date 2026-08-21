@@ -1,0 +1,14 @@
+.b-contact {
+    margin-top: 115px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 29px;
+
+    @media (width < 1200px) {
+        grid-template-columns: 1fr;
+    }
+
+    &__content {
+        
+    }
+}

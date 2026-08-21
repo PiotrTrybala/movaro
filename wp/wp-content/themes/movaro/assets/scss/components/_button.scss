@@ -8,15 +8,19 @@
     gap: 10px;
     border-radius: 38px;
     width: max-content;
+    border: 0;
+    cursor: pointer;
 
     & {
         text-decoration: none;
+        font-family: Outfit;
         font-size: 16px;
         font-style: normal;
         font-weight: 500;
         line-height: normal;
         letter-spacing: -0.32px;
         color: var(--color-fg);
+        
     }
 
     &--full {

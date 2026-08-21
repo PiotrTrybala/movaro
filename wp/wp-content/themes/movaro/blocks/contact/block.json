@@ -1,0 +1,15 @@
+{
+  "name": "movaro/contact",
+  "title": "Contact",
+  "description": "",
+  "category": "formatting",
+  "icon": "wordpress-alt",
+  "keywords": ["contact", "movaro"],
+  "supports": {
+    "anchor": true
+  },
+  "acf": {
+    "mode": "edit",
+    "renderTemplate": "render.php"
+  }
+}
