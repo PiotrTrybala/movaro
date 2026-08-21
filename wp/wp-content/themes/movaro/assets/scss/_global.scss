@@ -17,6 +17,13 @@
     --color-accent-bg-3: #E5EBF1;
 }
 
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+
 body {
     font-family: Outfit, sans-serif;
     background-color: var(--color-bg);

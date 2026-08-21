@@ -98,5 +98,11 @@ add_filter('wpcf7_form_elements', function ($content) {
         $content,
     );
 
-    return $output;
+    // regex specific for this project
+    $output1 = preg_replace(
+        '/^<span[^>]*><span[^>]*><label>(<input[^>]*class="([^"]*)"[^>]*>.*?)<\/label><\/span><\/span>$/im',
+        '<label class="$2">$1</label>',
+        $output
+    );
+    return $output1;
 });
