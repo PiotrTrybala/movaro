@@ -9,7 +9,8 @@ add_filter('wpcf7_autop_or_not', '__return_false');
 
 add_action('init', 'register_acf_blocks');
 
-function register_acf_blocks() {
+function register_acf_blocks()
+{
     register_block_type(__DIR__ . "/blocks/hero");
     register_block_type(__DIR__ . "/blocks/about");
     register_block_type(__DIR__ . "/blocks/benefits");
@@ -75,14 +76,27 @@ function register_menus()
 /* option pages */
 
 add_action('acf/init', function () {
-	if (function_exists('acf_add_options_page')) {
+    if (function_exists('acf_add_options_page')) {
 
-		acf_add_options_page(array(
-				'page_title' => 'Ustawienia ogólne',
-				'menu_title' => 'Ustawienia ogólne',
-				'menu_slug' => 'theme-general-settings',
-				'capability' => 'edit_posts',
-				'redirect' => true
-		));
+        acf_add_options_page(array(
+            'page_title' => 'Ustawienia ogólne',
+            'menu_title' => 'Ustawienia ogólne',
+            'menu_slug' => 'theme-general-settings',
+            'capability' => 'edit_posts',
+            'redirect' => true
+        ));
     }
+});
+
+/* contact form 7 */
+
+add_filter('wpcf7_form_elements', function ($content) {
+
+    $output = preg_replace(
+        '/^<span[^>]*>(.*?)<\/span>$/im',
+        '$1',
+        $content,
+    );
+
+    return $output;
 });

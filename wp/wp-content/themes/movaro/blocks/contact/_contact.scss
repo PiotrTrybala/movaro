@@ -85,4 +85,34 @@
         bottom: 32px;
         right: 0;
     }
+
+    &__container {
+        background-color: var(--color-bg);
+        border-radius: 35px;
+        border: 1px solid var(--color-accent-bg-3);
+        padding: 27px 56px;
+    }
+
+    &__form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+
+        h2 {
+            text-align: center;
+            font-size: 30px;
+            font-weight: 500;
+            line-height: 125%;
+        }
+
+        &-input {
+            display: flex;
+            padding: 15px 25px;
+            align-items: center;
+            border-radius: 38px;
+            border: 1px solid var(--color-accent-bg-3);
+            width: 100%;
+        }
+    }
 }

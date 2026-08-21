@@ -41,8 +41,8 @@ $phone_number = get_field("phone_number", "options");
         </div>
     </div>
 
-    <div class="b-contact__form">
-        <?= do_shortcode('[contact-form-7 id="d9185a6" title="Landing contact form"]'); ?>
+    <div class="b-contact__container">
+        <?= do_shortcode('[contact-form-7 id="d9185a6" title="Landing contact form" html_class="b-contact__form"]'); ?>
     </div>
 
 
