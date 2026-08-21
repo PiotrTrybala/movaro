@@ -5,11 +5,16 @@
     gap: 29px;
 
     @media (width < 1200px) {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(100%, 1fr);
     }
 
     &__content {
         padding: 128px 73px 128px 85px;
+
+        @media (width < 576px) {
+            padding: 50px 15px;
+        }
+
         background-color: var(--color-bg-hero);
         border-radius: 35px;
         display: flex;
@@ -22,6 +27,10 @@
         position: absolute;
         left: 0;
         bottom: -4px;
+
+        @media (width < 576px) {
+            display: none;
+        }
     }
 
     &__header {
@@ -32,7 +41,7 @@
         text-align: center;
 
         h2 {
-            font-size: 50px;
+            font-size: clamp(30px, 25.145px + 1.2945vw, 50px);
             font-style: normal;
             font-weight: 500;
             line-height: 125%;
@@ -69,6 +78,16 @@
         position: absolute;
         top: 450px;
         right: 14px;
+
+        @media (width < 1200px) {
+            transform: rotate(110deg);
+        }
+
+        @media (width < 576px) {
+            transform: rotate(110deg);
+            top: 420px;
+            right: 50px;
+        }
     }
 
     &__signature {
@@ -84,6 +103,13 @@
         width: 300px;
         bottom: 32px;
         right: 0;
+
+        @media (width < 576px) {
+            position: relative;
+            margin-top: 29px;
+            margin-left: auto;
+            transform: rotate(0);
+        }
     }
 
     &__container {
@@ -91,6 +117,10 @@
         border-radius: 35px;
         border: 1px solid var(--color-accent-bg-3);
         padding: 27px 56px;
+
+        @media (width < 576px) {
+            padding: 30px;
+        }
     }
 
     &__form {
@@ -103,7 +133,6 @@
             text-align: center;
             font-size: 30px;
             font-weight: 500;
-            line-height: 125%;
         }
 
         &-input {
@@ -153,15 +182,42 @@
         &-checkbox {
             display: flex;
             flex-direction: row;
-            align-items: center;
+            align-items: start;
+            gap: 11px;
             width: 100%;
 
             input[type=checkbox] {
-                width: max-content;
+                -webkit-appearance: none;
+                appearance: none;
+
+                height: 20px;
+                width: 26px; // ???
+                aspect-ratio: 1 / 1;
+
+                border-radius: 5px;
+                border: 1px solid var(--color-accent-bg-3);
+                cursor: pointer;
+
+                &:checked {
+                    background-color: var(--color-primary-accent);
+                    border: 1px solid var(--color-primary-accent);
+                    background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="11" height="12" viewBox="0 0 11 12" fill="none"><path d="M3.55171 10.3313C3.23947 10.3315 2.94001 10.1961 2.71941 9.95501L0.20307 7.21093C-0.0676898 6.91546 -0.0676898 6.43651 0.20307 6.14104C0.473916 5.84567 0.912957 5.84567 1.1838 6.14104L3.55171 8.72422L9.8162 1.89023C10.087 1.59486 10.5261 1.59486 10.7969 1.89023C11.0677 2.1857 11.0677 2.66465 10.7969 2.96012L4.38402 9.95501C4.16341 10.1961 3.86396 10.3315 3.55171 10.3313Z" fill="%23000000"/></svg>');
+                    background-position: 50% 50%;
+                    background-repeat: no-repeat;
+                }
             }
 
             span {
-                flex-grow: 1;
+                font-size: 14px;
+                font-weight: 300;
+            }
+        }
+
+        &-submit {
+            margin-right: auto;
+
+            @media (width < 576px) {
+                margin-left: auto;
             }
         }
 

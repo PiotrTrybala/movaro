@@ -98,11 +98,20 @@ add_filter('wpcf7_form_elements', function ($content) {
         $content,
     );
 
-    // regex specific for this project
+    // regex specific for this project removing wrapping elements from checkbox
     $output1 = preg_replace(
         '/^<span[^>]*><span[^>]*><label>(<input[^>]*class="([^"]*)"[^>]*>.*?)<\/label><\/span><\/span>$/im',
         '<label class="$2">$1</label>',
         $output
     );
-    return $output1;
+
+    // removing class from span element acting as label for checkbox
+
+    $output2 = preg_replace(
+        '/(?<=class=")wpcf7-list-item-label(?=")/im',
+        '',
+        $output1
+    );
+
+    return $output2;
 });
