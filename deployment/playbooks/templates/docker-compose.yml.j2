@@ -15,7 +15,7 @@ services:
     networks:
       - staging
 
-  wordpress:
+  {{ app_container_name }}:
     image: {{ docker_image }}
     container_name: {{ app_container_name }}
     restart: always
@@ -37,7 +37,7 @@ services:
 
   caddy:
     image: caddy:2-alpine
-    container_name: caddy_proxy_staging
+    container_name: {{ caddy_container_name }}
     restart: always
     ports:
       - "80:80"
@@ -47,7 +47,7 @@ services:
       - {{ data_dir }}/caddy_data:/data
       - {{ data_dir }}/caddy_config:/config
     depends_on:
-      - wordpress
+      - {{ app_container_name }}
     networks:
       - staging
 

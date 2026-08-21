@@ -29,20 +29,36 @@ body {
     background-color: var(--color-bg);
     color: var(--color-fg);
     width: 100%;
-    overflow-x: hidden; // TODO: Find better solution for shadow overflowing in Showcase block
 }
 
-#app {
-    width: 100%;
-}
-
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     margin: 0;
     padding: 0;
     border: 0;
 }
 
 .container {
-    margin-left: clamp(15px, calc((100vw - 1184px) * 300 / 736), 300px);
-    margin-right: clamp(15px, calc((100vw - 1184px) * 300 / 736), 300px);
+    margin: 0 auto;
+    width: 1320px;
+}
+
+.c-wrapper {
+    width: 100%;
+    background-color: var(--color-bg-hero);
+}
+
+.c-shadow {
+    position: absolute;
+    z-index: 100;
+    top: -250px;
+    left: -300px;
+    width: min(556px, 100%);
+    height: min(872px, 100%);
+    fill: rgba(255, 211, 56, 0.32);
+    filter: blur(100px); 
 }

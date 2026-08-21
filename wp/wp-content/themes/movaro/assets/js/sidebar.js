@@ -11,6 +11,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
     closeButton.addEventListener('click', () => {
         sidebar.classList.remove('l-overlay-active');
-    })
-
+    });
 });

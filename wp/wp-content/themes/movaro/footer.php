@@ -52,7 +52,6 @@ $privacy_policy_label = get_field("label_privacy_policy", "options");
         </div>
     </div>
 </footer>
-</main>
 <?php wp_footer(); ?>
 </body>
 

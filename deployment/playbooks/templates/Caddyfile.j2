@@ -5,5 +5,5 @@
         admin $2a$12$c.suDuXkpv0xwAKFfLaB.uXvKTFuAfoFmqvzvd1Oj5KKup4uDpc7a
     }
 
-    reverse_proxy wordpress:{{ app_host_port }}
+    reverse_proxy {{ app_container_name }}:{{ app_host_port }}
 }

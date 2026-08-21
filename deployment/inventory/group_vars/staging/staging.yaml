@@ -9,8 +9,9 @@ domain_name: movaro.staging.toolkit23.com
 docker_image: ghcr.io/piotrtrybala/movaro:v0.0.1
 
 db_name: staging
-db_container_name: movaro-staging
-app_container_name: movaro-site-staging
+db_container_name: movaro-db-staging
+app_container_name: movaro-web-staging
+caddy_container_name: movaro-caddy-staging
 app_host_port: 80
 
-data_dir: /opt/bartlomiejtrybala_staging
+data_dir: /opt/movaro_staging

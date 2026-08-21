@@ -2,10 +2,10 @@
     display: grid;
     grid-template-columns: auto 1fr auto;
     align-items: center;
-    position: absolute;
+    background-color: var(--color-bg-hero);
     z-index: 100;
     width: 100%;
-    padding-top: 43px;
+    padding-top: 40px;
 
     &__menu-button {
         display: none;
@@ -13,7 +13,6 @@
 
     &__logo {
         grid-column: 1;
-        padding-left: clamp(15px, calc((100vw - 1184px) * 300 / 736), 300px);
     }
 
     &__navigation {
@@ -41,7 +40,6 @@
 
     &__cta {
         grid-column: 3;
-        padding-right: clamp(15px, calc((100vw - 1184px) * 300 / 736), 300px);
     }
 
     @media (width < 1440px) {
