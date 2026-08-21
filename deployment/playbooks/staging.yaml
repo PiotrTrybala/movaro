@@ -10,7 +10,7 @@
   vars:
     local_dump_path: "{{ playbook_dir }}/tmp"
     source_compose_dir: "{{ playbook_dir }}/../../"
-    source_service_name: "db"
+    source_service_name: "movaro_db"
 
   tasks:
     - name: Ensure local dump directory exists
