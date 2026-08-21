@@ -1,0 +1,49 @@
+---
+- name: Dump application's database
+  hosts: localhost
+  connection: local
+  gather_facts: false
+
+  vars_files:
+    - "{{ playbook_dir }}/../group_vars/all.yaml"
+
+  vars:
+    local_dump_path: "{{ playbook_dir }}/tmp"
+    source_compose_dir: "{{ playbook_dir }}/../.."
+    source_service_name: "movaro_db"
+
+  tasks:
+    - name: Ensure local dump directory exists
+      ansible.builtin.file:
+        path: "{{ local_dump_path }}"
+        state: directory
+        mode: '0755'
+
+    - name: Get container ID of the local MySQL service
+      ansible.builtin.command:
+        cmd: "docker compose -f {{ source_compose_dir }}/docker-compose.yaml ps -q {{ source_service_name }}"
+      register: container_id
+      changed_when: false
+
+    - name: Set container ID fact
+      ansible.builtin.set_fact:
+        source_container_id: "{{ container_id.stdout }}"
+      failed_when: container_id.stdout == ""
+
+    - name: Create database dump from the container
+      ansible.builtin.shell:
+        cmd: >
+          docker exec -i -e MYSQL_PWD='{{ local_db_password }}' {{ source_container_id }}
+          mysqldump -u {{ local_db_user }} -h 127.0.0.1
+          --single-transaction --quick {{ local_db_name }}
+          > "{{ local_dump_path }}/dump.sql"
+      args:
+        executable: /bin/bash
+        creates: "{{ local_dump_path }}/tmp/dump.sql"
+      no_log: true
+
+    - name: Verify dump file was created and is not empty
+      ansible.builtin.stat:
+        path: "{{ local_dump_path }}/dump.sql"
+      register: dump_stat
+      failed_when: not dump_stat.stat.exists or dump_stat.stat.size == 0
