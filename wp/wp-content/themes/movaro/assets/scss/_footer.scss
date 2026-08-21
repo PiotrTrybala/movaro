@@ -1,0 +1,102 @@
+.c-footer {
+    margin-top: 115px;
+    display: flex;
+    flex-direction: column;
+    gap: 90px;
+    @media (width < 576px) {
+        gap: 50px;
+    }
+    padding: 66px clamp(15px, calc((100vw - 1184px) * 300 / 736), 300px) 47px;
+    border-radius: 50px 50px 0 0;
+    background-color: var(--color-fg);
+    color: var(--color-bg);
+    width: 100%;
+
+    position: relative;
+
+    &__shadow {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+
+        @media (width < 576px) {
+            display: none;
+        }
+
+        svg {
+            fill: var(--color-primary-accent);
+        }
+    }
+
+    &__navigation {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+        @media (width < 768px) {
+            flex-direction: column;
+        }
+    }
+
+    a {
+        color: var(--color-bg);
+        text-decoration: none;
+        font-size: 16px;
+        font-weight: 300;
+        line-height: normal;
+    }
+
+    &__nav {
+        display: flex;
+        flex-direction: row;
+
+        ul {
+            display: flex;
+            flex-direction: row;
+            list-style-type: none;
+            gap: 29px;
+
+            @media (width < 1200px) {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                margin-top: 40px;
+                gap: 29px;
+
+                li {
+                    width: 100%;
+                }
+            }
+
+            li:not(:first-child)::before {
+                content: "/";
+                margin-right: 29px;
+                @media (width < 1200px) {
+                    content: "";
+                    margin-right: 0;
+                }
+            }
+
+        }
+    }
+
+    &__row {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+        @media (width < 576px) {
+            flex-direction: column;
+            align-items: start;
+            gap: 20px;
+        }
+    }
+
+    &__producer {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 25px;
+    }
+}
