@@ -5,7 +5,7 @@
     background-color: var(--color-bg-hero);
     z-index: 100;
     width: 100%;
-    padding-top: 40px;
+    padding-top: 43px;
 
     &__menu-button {
         display: none;
@@ -42,8 +42,8 @@
         grid-column: 3;
     }
 
-    @media (width < 1440px) {
-        grid-template-columns: auto 1fr; // Logo | Menu Button
+    @media (width <=1319.98px) {
+        grid-template-columns: auto 1fr;
 
         &__navigation,
         &__cta {
@@ -51,12 +51,20 @@
         }
 
         &__menu-button {
+            height: 22px;
+            width: 22px;
             display: flex;
             grid-column: 2;
-            justify-self: end; // Locks button to the right edge
-            margin-right: clamp(15px, calc((100vw - 1184px) * 300 / 736), 300px);
+            justify-self: end;
             background-color: transparent;
             border: 0;
+            justify-content: center;
+            align-items: center;
+
+            svg {
+                pointer-events: none;
+                
+            }
         }
     }
 }
@@ -73,7 +81,7 @@
     display: none;
     background-color: var(--color-bg);
 
-    &-active {
+    &.active {
         display: flex;
         flex-direction: row;
         justify-content: flex-end;
@@ -87,14 +95,13 @@
     display: flex;
     flex-direction: column;
 
+    padding: 0 15px;
+
     &__header {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        align-items: center;
         padding-top: 43px;
-        padding-left: 15px;
-        padding-right: 15px;
 
         &-logo {
             display: flex;
@@ -102,6 +109,8 @@
         }
 
         &-button {
+            width: 22px;
+            height: 22px;
             background-color: transparent;
             display: flex;
             justify-content: center;

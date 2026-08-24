@@ -50,30 +50,38 @@ h6 {
 .c-shadow {
     position: absolute;
     z-index: 100;
-    top: -250px;
-    left: -300px;
+    top: -200px;
+    left: -280px;
     width: min(556px, 100%);
     height: min(872px, 100%);
     fill: rgba(255, 211, 56, 0.32);
-    filter: blur(100px);
+    filter: blur(50px);
 }
 
 .container {
     margin: 0 auto;
     width: 1320px;
 
+    @media (width <=1319.98px) {
+        width: 1184px;
+    }
+
     @media (width <=1183.98px) {
         width: 992px;
     }
+
     @media (width <=991.98px) {
         width: 768px;
     }
+
     @media (width <=767.98px) {
         width: 576px;
     }
+
     @media (width <=575.98px) {
-        margin-left: 15px;
-        margin-right: 15px;
         width: 100%;
+        margin: 0;
+        padding-left: 15px;
+        padding-right: 15px;
     }
 }

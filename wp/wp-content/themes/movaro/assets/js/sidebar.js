@@ -3,13 +3,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const menuButton = document.querySelector(".c-header__menu-button");
     const closeButton = document.querySelector(".c-sidebar__header-button");
-    const sidebar = document.querySelector(".l-overlay");
+    const overlay = document.querySelector(".l-overlay");
+
+    console.log(menuButton);
 
     menuButton.addEventListener('click', () => {
-        sidebar.classList.add('l-overlay-active');
+        console.log('active overlay');
+        overlay.classList.add('active');
     });
 
     closeButton.addEventListener('click', () => {
-        sidebar.classList.remove('l-overlay-active');
+        console.log('not active overlay');
+        overlay.classList.remove('active');
     });
 });
