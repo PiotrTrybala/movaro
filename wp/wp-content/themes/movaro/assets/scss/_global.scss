@@ -59,8 +59,19 @@ h6 {
 }
 
 .container {
-    margin: 0 auto;
+    margin-left: auto;
+    margin-right: auto;
     width: 1320px;
+    
+    &.wide {
+        @extend .container;
+        width: 1620px;
+        
+        @media (width <=1619.98px) {
+            width: 1320px;
+        }
+    }
+
 
     @media (width <=1319.98px) {
         width: 1184px;
@@ -85,3 +96,7 @@ h6 {
         padding-right: 15px;
     }
 }
+
+// * {
+//     outline: 1px solid red !important;
+// }
