@@ -10,10 +10,10 @@ $benefits = get_field("benefits") ?? [];
 ?>
 
 <section class="container b-benefits">
-    <span class="b-benefits__deco"></span>
-    <span class="b-benefits__deco"></span>
-    <span class="b-benefits__deco"></span>
     <div class="b-benefits__content">
+        <span class="b-benefits__deco"></span>
+        <span class="b-benefits__deco"></span>
+        <span class="b-benefits__deco"></span>
         <h2><?= esc_html($title1) ?></h2>
         <h3><?= esc_html($description1) ?></h3>
         <div class="b-benefits__content-cta">
