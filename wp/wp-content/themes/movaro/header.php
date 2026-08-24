@@ -52,7 +52,7 @@ $landing_page_link = get_field("landing_page_link", "options") ?? '';
             </button>
         </header>
     </div>
-    <div class="l-overlay active">
+    <div class="l-overlay">
         <aside class="c-sidebar">
             <header class=c-sidebar__header>
                 <div class="c-sidebar__header-logo">
