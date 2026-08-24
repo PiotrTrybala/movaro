@@ -42,11 +42,6 @@ h6 {
     border: 0;
 }
 
-.container {
-    margin: 0 auto;
-    width: 1320px;
-}
-
 .c-wrapper {
     width: 100%;
     background-color: var(--color-bg-hero);
@@ -60,5 +55,25 @@ h6 {
     width: min(556px, 100%);
     height: min(872px, 100%);
     fill: rgba(255, 211, 56, 0.32);
-    filter: blur(100px); 
+    filter: blur(100px);
+}
+
+.container {
+    margin: 0 auto;
+    width: 1320px;
+
+    @media (width <=1183.98px) {
+        width: 992px;
+    }
+    @media (width <=991.98px) {
+        width: 768px;
+    }
+    @media (width <=767.98px) {
+        width: 576px;
+    }
+    @media (width <=575.98px) {
+        margin-left: 15px;
+        margin-right: 15px;
+        width: 100%;
+    }
 }
