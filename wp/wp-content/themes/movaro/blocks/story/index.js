@@ -9,7 +9,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const header = document.querySelector(".b-story__header");
 
     if (!wrapper || !header) return;
-
     const words = processWords(header);
     wrapper.style.height = `calc(100vh + 4000px)`;
 
