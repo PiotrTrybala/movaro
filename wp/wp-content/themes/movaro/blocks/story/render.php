@@ -4,17 +4,15 @@ $photos = get_field("gallery") ?? [];
 ?>
 
 <section class="b-story container">
-    <header class="b-story__header">
-        <h2><?= htmlspecialchars($title1) ?></h2>
-    </header>
-
+    <h2 class="b-story__header"><?= esc_html($title1) ?></h2>
     <div class="b-story__photos">
-        <?php if ($photos && is_iterable($photos)): ?>
+        <?php if ($photos): ?>
             <?php foreach ($photos as $photo): ?>
                 <div class="b-story__photo">
-                    <?= wp_get_attachment_image($photo['ID'], 'large'); ?>
+                    <?= wp_get_attachment_image($photo['ID'], 'large') ?>
                 </div>
-            <? endforeach; ?>
+            <?php endforeach; ?>
         <?php endif; ?>
     </div>
+
 </section>
