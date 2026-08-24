@@ -1,7 +1,15 @@
 .b-story {
-    margin-top: 115px;
+    position: sticky;
+    top: 115px;
+
     display: flex;
     flex-direction: column;
+
+    &__wrapper {
+        position: relative;
+        margin-top: 115px;
+        height: calc(100vh + 3000px);
+    }
 
     &__header {
         color: var(--color-secondary-accent);
@@ -11,7 +19,7 @@
         letter-spacing: -2px;
         text-align: center;
 
-        @media (width <= 575.98px) {
+        @media (width <=575.98px) {
             width: 332px;
             margin-left: auto;
             margin-right: auto;
@@ -25,7 +33,7 @@
         grid-template-rows: 1fr;
         gap: 30px;
 
-        @media (width <= 991.98px) {
+        @media (width <=991.98px) {
             grid-template-columns: repeat(2, 1fr);
             grid-template-rows: auto;
         }
@@ -35,13 +43,14 @@
         width: 100%;
         border-radius: 8px;
 
-        @media (width <= 991.98px) {
+        @media (width <=991.98px) {
             &:nth-of-type(3n + 1) {
                 grid-column: span 2;
                 height: 220px;
             }
 
-            &:nth-of-type(3n), &:nth-of-type(3n + 2) {
+            &:nth-of-type(3n),
+            &:nth-of-type(3n + 2) {
                 height: 160px;
             }
         }
