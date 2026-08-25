@@ -24,6 +24,13 @@ function register_acf_blocks()
     register_block_type(__DIR__ . "/blocks/contact");
 }
 
+/* ajax */
+
+include_once(__DIR__ . "/ajax/shop.php");
+
+add_action('wp_ajax_load_more_shop', 'load_more_shop_callback');
+add_action('wp_ajax_nopriv_load_shop', 'load_more_shop_callback');
+
 /* scripts & styles */
 
 add_action('wp_enqueue_scripts', 'enqueue_scripts');
@@ -35,6 +42,8 @@ function dynamicAssetVersion(string $filePath): string
         ? (string)filemtime($filePath)
         : '1.0';
 }
+
+
 
 function enqueue_scripts(): void
 {
@@ -58,6 +67,12 @@ function enqueue_scripts(): void
         dynamicAssetVersion($jsFile),
         true
     );
+
+    /* localizing shop items ajax */
+    wp_localize_script('app', 'shop_ajax', [
+        'ajax_url' => admin_url('admin-ajax.php'),
+        'nonce'    => wp_create_nonce('load_more_shop_nonce'),
+    ]);
 }
 
 /* menus */
