@@ -62,11 +62,11 @@ h6 {
     margin-left: auto;
     margin-right: auto;
     width: 1320px;
-    
+
     &.wide {
         @extend .container;
         width: 1620px;
-        
+
         @media (width <=1619.98px) {
             width: 1320px;
         }
@@ -75,6 +75,8 @@ h6 {
 
     @media (width <=1319.98px) {
         width: 1184px;
+        padding-left: 15px;
+        padding-right: 15px;
     }
 
     @media (width <=1183.98px) {
@@ -92,11 +94,38 @@ h6 {
     @media (width <=575.98px) {
         width: 100%;
         margin: 0;
-        padding-left: 15px;
-        padding-right: 15px;
     }
 }
 
 // * {
 //     outline: 1px solid red !important;
 // }
+
+@function to-rem($value) {
+    @if type-of($value)=='number' and unit($value)=='px' {
+        @return math.div($value, 16px) * 1rem;
+    }
+
+    @else if type-of($value)=='number' and unitless($value) {
+        @return math.div($value, 16) * 1rem;
+    }
+
+    @return $value;
+}
+
+@mixin fluid-clamp($property, $max-width, $min-width, $max-size, $min-size) {
+    $max-w: to-rem($max-width);
+    $min-w: to-rem($min-width);
+    $max-s: to-rem($max-size);
+    $min-s: to-rem($min-size);
+
+    $slope: math.div(($max-s - $min-s), ($max-w - $min-w));
+    $y-axis-intersection: -$min-w * $slope + $min-s;
+
+    $vw-value: calc(#{$y-axis-intersection} + #{$slope * 100vw});
+
+    $bound-min: if($min-s < $max-s, $min-s, $max-s);
+    $bound-max: if($min-s < $max-s, $max-s, $min-s);
+
+    #{$property}: clamp(#{$bound-min}, #{$vw-value}, #{$bound-max});
+}
