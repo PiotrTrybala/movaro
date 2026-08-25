@@ -18,7 +18,7 @@ $reviews = get_field("reviews") ?? [];
                     <div class="b-reviews__content">
                         <?php foreach ($reviews as $review): ?>
                             <div class="c-review">
-                                <!-- <header class="c-review__header">
+                                <header class="c-review__header">
                                     <?php for ($i = 0; $i < $review['stars']; $i++): ?>
                                         <div class="c-review__header-star">
                                             <?php if ($review_icon): ?>
@@ -32,7 +32,7 @@ $reviews = get_field("reviews") ?? [];
                                 </div>
                                 <footer class="c-review__footer">
                                     <h3><?= esc_html($review['username'] ?? '') ?></h3>
-                                </footer> -->
+                                </footer>
                             </div>
                         <?php endforeach; ?>
                     </div>
