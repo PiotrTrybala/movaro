@@ -14,19 +14,11 @@ $reviews = get_field("reviews") ?? [];
     <?php if ($reviews): ?>
         <div class="swiper b-reviews__swiper">
             <div class="swiper-wrapper b-reviews__swiper-wrapper">
-                <?php for ($j = 0; $j < 1; $j++): ?>
-                    <div class="b-reviews__slide">
-                        <h1>Slide <?= $j ?></h1>
-                    </div>
-                <?php endfor; ?>
-            </div>
-        </div>
-    <?php endif; ?>
-</section>
-<!-- <div class="b-reviews__content">
+                <?php for ($j = 0; $j < 3; $j++): ?>
+                    <div class="b-reviews__content">
                         <?php foreach ($reviews as $review): ?>
                             <div class="c-review">
-                                <header class="c-review__header">
+                                <!-- <header class="c-review__header">
                                     <?php for ($i = 0; $i < $review['stars']; $i++): ?>
                                         <div class="c-review__header-star">
                                             <?php if ($review_icon): ?>
@@ -40,7 +32,12 @@ $reviews = get_field("reviews") ?? [];
                                 </div>
                                 <footer class="c-review__footer">
                                     <h3><?= esc_html($review['username'] ?? '') ?></h3>
-                                </footer>
+                                </footer> -->
                             </div>
                         <?php endforeach; ?>
-                    </div> -->
+                    </div>
+                <?php endfor; ?>
+            </div>
+        </div>
+    <?php endif; ?>
+</section>

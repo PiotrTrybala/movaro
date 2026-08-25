@@ -6,22 +6,24 @@ import 'swiper/css';
 document.addEventListener("DOMContentLoaded", () => {
 
     const reviewsSwiper = document.querySelector(".b-reviews__swiper");
-    
+
     new Swiper(reviewsSwiper, {
         wrapperClass: 'b-reviews__swiper-wrapper',
-        slideClass: 'b-reviews__slide',
+        slideClass: 'b-reviews__content',
 
         modules: [Autoplay],
         loop: true,
 
         slidesPerView: 1,
-        
-        speed: 20000,
-        
+        spaceBetween: 30,
+
+        speed: 5000,
+
         autoplay: {
             delay: 0,
             pauseOnMouseEnter: true,
             disableOnInteraction: false,
+            waitForTransition: true,
         },
     });
 
