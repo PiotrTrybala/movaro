@@ -3,6 +3,8 @@ import { Swiper } from 'swiper';
 import { Autoplay } from 'swiper/modules';
 import 'swiper/css';
 
+// Add flexbox layout in reviews <= 576px: for contents, and adjust swiper
+
 document.addEventListener("DOMContentLoaded", () => {
 
     const reviewsSwiper = document.querySelector(".b-reviews__swiper");
