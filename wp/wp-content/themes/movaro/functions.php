@@ -34,7 +34,6 @@ add_action('wp_ajax_nopriv_load_shop', 'load_more_shop_callback');
 /* scripts & styles */
 
 add_action('wp_enqueue_scripts', 'enqueue_scripts');
-add_action('admin_enqueue_scripts', 'enqueue_scripts');
 
 function dynamicAssetVersion(string $filePath): string
 {
@@ -103,30 +102,26 @@ add_action('acf/init', function () {
     }
 });
 
-/* contact form 7 */
+add_filter(
+    'wpcf7_form_elements',
+    function ($content) {
+        return preg_replace(
+            '/<label(\s+[^>]*)?>/i',
+            '<label$1 class="b-contact__form-checkbox">',
+            $content
+        );
+    }
+);
 
-add_filter('wpcf7_form_elements', function ($content) {
-
-    $output = preg_replace(
-        '/^<span[^>]*>(.*?)<\/span>$/im',
-        '$1',
-        $content,
-    );
-
-    // regex specific for this project removing wrapping elements from checkbox
-    $output1 = preg_replace(
-        '/^<span[^>]*><span[^>]*><label>(<input[^>]*class="([^"]*)"[^>]*>.*?)<\/label><\/span><\/span>$/im',
-        '<label class="$2">$1</label>',
-        $output
-    );
-
-    // removing class from span element acting as label for checkbox
-
-    $output2 = preg_replace(
-        '/(?<=class=")wpcf7-list-item-label(?=")/im',
-        '',
-        $output1
-    );
-
-    return $output2;
-});
+add_filter(
+    'wpcf7_form_response_output',
+    function ($output, $class, $content, $form) {
+        return preg_replace(
+            '/class="([^"]*wpcf7-response-output[^"]*)"/i',
+            'class="b-contact__form-response $1"',
+            $output
+        );
+    },
+    10,
+    4
+);
