@@ -4,7 +4,13 @@
 
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    padding: 0;
     gap: 30px;
+
+    @media (width <=991.98px) {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+    }
 
     &__content {
         position: relative;
@@ -12,6 +18,10 @@
         flex-direction: column;
         gap: 30px;
         padding: 130px 80px;
+
+        @media (width <=991.98px) {
+            padding: 50px 30px;
+        }
 
         background-color: var(--color-bg-hero);
         border-radius: 35px;
@@ -84,15 +94,39 @@
 
         &-signature {
             position: absolute;
+            right: 24px;
+            bottom: 32px;
+            width: 300px;
+
+            @media (width <=991.98px) {
+                position: relative;
+                margin-left: auto;
+                margin-right: auto;
+                inset: 0;
+            }
+
             display: flex;
             flex-direction: column;
             align-items: flex-end;
-            right: 24px;
-            bottom: 32px;
+
+            @media (width <=991.98px) {
+                flex-direction: column-reverse;
+                align-items: center;
+            }
+
             transform: rotate(-15.737deg);
+
+            @media (width <=991.98px) {
+                transform: rotate(0);
+            }
 
             svg {
                 transform: rotate(15.737deg);
+
+                @media (width <=991.98px) {
+                    transform: rotate(130deg);
+                    margin-left: auto;
+                }
             }
 
             span {
@@ -108,6 +142,12 @@
 
     &__container {
         padding: 30px 50px;
+
+        @media (width <=991.98px) {
+            margin: 0 15px;
+            padding: 30px 15px;
+        }
+
         border-radius: 35px;
         border: 1px solid var(--color-accent-bg-3);
     }
@@ -193,6 +233,12 @@
             padding: 15px 25px;
             border: 0 !important;
             color: var(--color-error);
+        }
+
+        &-submit {
+            @media (width <= 575.98px) {
+                margin: 30px auto 0 auto;
+            }
         }
 
         .wpcf7-list-item {
