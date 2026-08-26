@@ -8,7 +8,7 @@
 
     &__content {
         position: relative;
-        display: flex;
+        display: inline-flex;
         flex-direction: column;
         gap: 30px;
         padding: 130px 80px;
@@ -109,12 +109,13 @@
     &__container {
         padding: 30px 50px;
         border-radius: 35px;
-        border: 1px solid var(--color-accent-bg-3);   
+        border: 1px solid var(--color-accent-bg-3);
     }
 
     &__form {
         display: flex;
         flex-direction: column;
+        gap: 15px;
 
         h2 {
             font-size: 38px;
@@ -122,6 +123,65 @@
             line-height: 1.25;
             letter-spacing: -1.2px;
             text-align: center;
+        }
+
+        &-input {
+            padding: 15px 25px;
+            font-family: Outfit, sans-serif;
+            border-radius: 40px;
+            border: 1px solid var(--color-accent-bg-3);
+            font-size: 16px;
+            font-weight: 300;
+            letter-spacing: -0.32px;
+
+            &:focus {
+                outline: none;
+                border: 1px solid var(--color-fg);
+            }
+        }
+
+        &-textarea {
+            padding: 15px 25px;
+            font-family: Outfit, sans-serif;
+            border-radius: 20px;
+            border: 1px solid var(--color-accent-bg-3);
+            font-size: 16px;
+            font-weight: 300;
+            letter-spacing: -0.32px;
+            resize: none;
+        }
+
+        &-checkbox {
+            display: inline-flex;
+            flex-direction: row;
+            gap: 20px;
+
+            input[type=checkbox] {
+                display: block;
+                width: 20px;
+                height: 20px;
+                border-radius: 5px;
+                flex-shrink: 0;
+                border: 1px solid var(--color-accent-bg-3);
+                cursor: pointer;
+
+                -webkit-appearance: none;
+                appearance: none;
+
+                &:checked {
+                    background: var(--color-primary);
+                    background-image: url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="11" height="12" viewBox="0 0 11 12" fill="none"%3E%3Cpath d="M3.55171 10.3313C3.23947 10.3315 2.94001 10.1961 2.71941 9.95501L0.20307 7.21093C-0.0676898 6.91546 -0.0676898 6.43651 0.20307 6.14104C0.473916 5.84567 0.912957 5.84567 1.1838 6.14104L3.55171 8.72422L9.8162 1.89023C10.087 1.59486 10.5261 1.59486 10.7969 1.89023C11.0677 2.1857 11.0677 2.66465 10.7969 2.96012L4.38402 9.95501C4.16341 10.1961 3.86396 10.3315 3.55171 10.3313Z" fill="black"/%3E%3C/svg%3E');
+                    background-repeat: no-repeat;
+                    background-position: center;
+                    border: 1px solid var(--color-primary);
+                }
+            }
+
+            span {
+                font-size: 14px;
+                font-weight: 300;
+                letter-spacing: -0.28px;
+            }
         }
     }
 
